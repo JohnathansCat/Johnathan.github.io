@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pricing – Johnny’s Websites</title>
+
+<style>
+:root {
+  --green-dark: #386641;
+  --green: #6a994e;
+  --lime: #a7c957;
+  --cream: #f2e8cf;
+  --red: #bc4749;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--cream);
+  color: #1f2a1f;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: #fff;
+  border-bottom: 3px solid var(--green);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header strong {
+  color: var(--green-dark);
+  font-size: 1.3rem;
+}
+
+nav a {
+  margin-left: 24px;
+  font-weight: 600;
+  color: var(--green-dark);
+  transition: transform 0.2s ease, color 0.2s ease;
+  display: inline-block;
+}
+
+nav a:not(.btn):hover {
+  transform: scale(1.06);
+  color: var(--red);
+}
+
+.btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: var(--red);
+  color: #fff !important;
+  font-weight: 700;
+  transition: box-shadow 0.2s ease;
+  display: inline-block;
+}
+
+nav a.btn:hover {
+  transform: none;
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(188, 71, 73, 0.35);
+}
+
+/* Page hero */
+.page-hero {
+  padding: 80px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, var(--green-dark), var(--green));
+  color: var(--cream);
+}
+
+.page-hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 12px;
+}
+
+/* Grid */
+.section {
+  padding: 80px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.item-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+}
+
+.item-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: #ddd;
+}
+
+.item-body {
+  padding: 16px;
+}
+
+.item-title {
+  font-weight: 700;
+  color: var(--green-dark);
+  margin-bottom: 6px;
+}
+
+.item-desc {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  margin-bottom: 10px;
+}
+
+.item-price {
+  font-weight: 800;
+  color: var(--red);
+  font-size: 1.1rem;
+}
+
+.buy-btn {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: var(--red);
+  color: white;
+  font-weight: 700;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.buy-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(188, 71, 73, 0.35);
+}
+
+/* Footer */
+footer {
+  background: var(--green-dark);
+  color: var(--cream);
+  padding: 60px 20px;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div id="checkoutModal" style="
+  position:fixed; inset:0; background:rgba(0,0,0,0.6);
+  display:none; align-items:center; justify-content:center; z-index:9999;
+">
+  <div style="background:white; color:#111; padding:20px; border-radius:12px; width:100%; max-width:420px;">
+    <h2>Checkout</h2>
+
+    <input id="coName" placeholder="Full Name" style="width:100%; padding:10px; margin-bottom:8px;" />
+    <input id="coEmail" placeholder="Email" style="width:100%; padding:10px; margin-bottom:8px;" />
+    <input id="coAddress" placeholder="Street Address" style="width:100%; padding:10px; margin-bottom:8px;" />
+    <input id="coCity" placeholder="City" style="width:100%; padding:10px; margin-bottom:8px;" />
+    <input id="coState" placeholder="State" style="width:100%; padding:10px; margin-bottom:8px;" />
+    <input id="coZip" placeholder="ZIP Code" style="width:100%; padding:10px; margin-bottom:12px;" />
+
+    <div style="display:flex; gap:10px; justify-content:flex-end;">
+      <button id="coCancel" type="button">Cancel</button>
+      <button id="coPay" type="button" style="background:#bc4749; color:white; font-weight:bold;">
+        Pay (Mock)
+      </button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <strong>Johnny’s Websites</strong>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="index.html#contact" class="btn">Contact</a>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <h1>Pricing & Products</h1>
+  <p>Browse what we currently offer.</p>
+</section>
+
+<section class="section">
+  <div id="grid" class="grid">
+    <!-- Items will be injected here -->
+  </div>
+</section>
+
+<footer>
+  <h3>Johnny’s Websites</h3>
+  <p>Clean, fast websites for real businesses.</p>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+let checkoutProductId = null;
+let checkoutQty = 1;
+
+const checkoutModal = document.getElementById("checkoutModal");
+const coName = document.getElementById("coName");
+const coEmail = document.getElementById("coEmail");
+const coAddress = document.getElementById("coAddress");
+const coCity = document.getElementById("coCity");
+const coState = document.getElementById("coState");
+const coZip = document.getElementById("coZip");
+const coPay = document.getElementById("coPay");
+const coCancel = document.getElementById("coCancel");
+
+const API_BASE = "http://localhost:3000/api";
+
+function loadProducts() {
+  fetch(API_BASE + "/products")
+    .then(res => res.json())
+    .then(items => {
+      const grid = document.getElementById("grid");
+      grid.innerHTML = "";
+
+      if (!items.length) {
+        grid.innerHTML = "<p>No products available right now.</p>";
+        return;
+      }
+
+      items.forEach(item => {
+        // Hide sold-out items
+        if ((item.sold || 0) >= (item.quantity || 1)) return;
+
+        const card = document.createElement("div");
+        card.className = "item-card";
+
+        const img = document.createElement("img");
+        img.src = item.image;
+        img.alt = item.title || "";
+
+        const body = document.createElement("div");
+        body.className = "item-body";
+
+        const title = document.createElement("div");
+        title.className = "item-title";
+        title.textContent = item.title;
+
+        const desc = document.createElement("div");
+        desc.className = "item-desc";
+        desc.textContent = item.description || "";
+
+        const price = document.createElement("div");
+        price.className = "item-price";
+        price.textContent = "$" + item.price;
+
+        const buyBtn = document.createElement("button");
+        buyBtn.className = "buy-btn";
+        buyBtn.textContent = "Buy";
+        buyBtn.onclick = () => {
+  checkoutProductId = item.id;
+  checkoutQty = 1;
+  checkoutModal.style.display = "flex";
+};
+
+        body.appendChild(title);
+        body.appendChild(desc);
+        body.appendChild(price);
+        body.appendChild(buyBtn);
+
+        card.appendChild(img);
+        card.appendChild(body);
+
+        grid.appendChild(card);
+      });
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById("grid").innerHTML =
+        "<p style='color:red;'>Failed to load products.</p>";
+    });
+}
+
+function validateCheckout(customer) {
+  if (!customer.name || customer.name.trim().length < 2) {
+    alert("Please enter a valid name.");
+    return false;
+  }
+
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customer.email || "");
+  if (!emailOk) {
+    alert("Please enter a valid email address.");
+    return false;
+  }
+
+  if (!customer.address || customer.address.trim().length < 5) {
+    alert("Please enter a valid address.");
+    return false;
+  }
+
+  if (!customer.city || customer.city.trim().length < 2) {
+    alert("Please enter a valid city.");
+    return false;
+  }
+
+  if (!customer.state || customer.state.trim().length < 2) {
+    alert("Please enter a valid state.");
+    return false;
+  }
+
+  if (!customer.zip || customer.zip.trim().length < 4) {
+    alert("Please enter a valid ZIP / postal code.");
+    return false;
+  }
+
+  return true;
+}
+
+coCancel.onclick = () => {
+  checkoutModal.style.display = "none";
+};
+
+coPay.onclick = async () => {
+  try {
+    if (!checkoutProductId) {
+      alert("No product selected.");
+      return;
+    }
+
+    if (!coName.value || !coEmail.value || !coAddress.value || !coCity.value || !coState.value || !coZip.value) {
+      alert("Please fill in all fields");
+      return;
+    }
+
+    // 1. Start mock payment
+    const payRes = await fetch(API_BASE + "/payments/start", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ amount: 0 })
+    });
+
+    if (!payRes.ok) {
+      const t = await payRes.text();
+      throw new Error("Payment start failed: " + t);
+    }
+
+    const payData = await payRes.json();
+    const paymentToken = payData.mockToken;
+
+    if (!paymentToken) {
+      throw new Error("No payment token returned");
+    }
+
+    // 2. Create order with customer info
+    const res = await fetch(API_BASE + "/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        items: [{ product_id: checkoutProductId, quantity: checkoutQty }],
+        paymentToken,
+        customer: {
+          name: coName.value,
+          email: coEmail.value,
+          address: coAddress.value,
+          city: coCity.value,
+          state: coState.value,
+          zip: coZip.value
+        }
+      })
+    });
+
+    if (!res.ok) {
+      const t = await res.text();
+      throw new Error("Order creation failed: " + t);
+    }
+
+    const data = await res.json();
+
+    if (data.error) {
+      alert("Error: " + data.error);
+      return;
+    }
+
+    alert("Order placed! Order #" + data.orderId);
+
+    // 3. Confirm payment
+    await fetch(API_BASE + "/payments/confirm", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ paymentToken })
+    });
+
+    checkoutModal.style.display = "none";
+    loadProducts();
+
+  } catch (err) {
+    console.error(err);
+    alert("Checkout failed: " + err.message);
+  }
+};
+
+// Initial load
+loadProducts();
+
+});
+
+</script>
+
+</body>
+</html>

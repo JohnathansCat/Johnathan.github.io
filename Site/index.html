@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Johnny’s Websites</title>
+
+<style>
+:root {
+  --green-dark: #386641;
+  --green: #6a994e;
+  --lime: #a7c957;
+  --cream: #f2e8cf;
+  --red: #bc4749;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--cream);
+  color: #1f2a1f;
+}
+
+a { text-decoration: none; color: inherit; }
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: #fff;
+  border-bottom: 3px solid var(--green);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header strong {
+  color: var(--green-dark);
+  font-size: 1.3rem;
+}
+
+nav a {
+  margin-left: 24px;
+  font-weight: 600;
+  color: var(--green-dark);
+  transition: transform 0.2s ease, color 0.2s ease;
+  display: inline-block;
+}
+
+/* Hover grow ONLY for normal nav links */
+nav a:not(.btn):hover {
+  transform: scale(1.06);
+  color: var(--red);
+}
+
+/* Button */
+.btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: var(--red);
+  color: #fff !important;
+  font-weight: 700;
+  transition: box-shadow 0.2s ease;
+  display: inline-block;
+}
+
+nav a.btn:hover {
+  transform: none;
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(188, 71, 73, 0.35);
+}
+
+/* Hero */
+.hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, var(--green-dark), var(--green));
+  color: var(--cream);
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  margin-bottom: 20px;
+}
+
+.hero p {
+  max-width: 720px;
+  margin: 0 auto 30px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Sections */
+.section {
+  padding: 90px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section h2 {
+  text-align: center;
+  color: var(--green-dark);
+  margin-bottom: 40px;
+}
+
+.section h2::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 4px;
+  background: var(--red);
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+.grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border-top: 5px solid var(--lime);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+  border-top-color: var(--red);
+}
+
+/* Testimonials */
+.testimonials {
+  overflow: hidden;
+  width: 100%;
+}
+
+.testimonial-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.testimonial {
+  min-width: 280px;
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  border-left: 5px solid var(--red);
+}
+
+.stars {
+  color: var(--red);
+  margin-bottom: 8px;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Contact */
+.contact {
+  background: #fff;
+  padding: 80px 20px;
+}
+
+.contact h2 {
+  text-align: center;
+}
+
+.contact form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: grid;
+  gap: 16px;
+}
+
+.contact input, .contact textarea {
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 2px solid var(--green);
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.contact textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.contact button {
+  border: none;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  background: var(--green-dark);
+  color: var(--cream);
+  padding: 60px 20px;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <strong>Johnny’s Websites</strong>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="#contact" class="btn">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Clean, Fast Websites That Actually Converts Clicks To Customers</h1>
+    <p>
+      I build websites for people who are tired of slow, clunky, overcomplicated websites.
+       
+    </p>
+    <a href="#contact" class="btn">Let’s Build Yours</a>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <h2>What I Do & How It Works</h2>
+  <div class="grid">
+    <div class="card">
+      <h3 style="font-size:1.6rem; margin-bottom:16px; color:#386641;">Services</h3>
+      <ul style="list-style:none; padding:0; display:grid; gap:12px;">
+        <li><strong>Custom Websites</strong><br><span style="opacity:0.8;">Built from scratch for your business.</span></li>
+        <li><strong>Landing Pages</strong><br><span style="opacity:0.8;">Focused pages made to convert.</span></li>
+        <li><strong>Redesigns</strong><br><span style="opacity:0.8;">Turn outdated sites into something modern and fast.</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3 style="font-size:1.6rem; margin-bottom:16px; color:#386641;">The Process</h3>
+      <ol style="padding-left:18px; display:grid; gap:10px;">
+        <li>We talk about your business and what you actually need</li>
+        <li>I design and build the site</li>
+        <li>You review it and request changes</li>
+        <li>We launch it and get you online</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>What Clients Say</h2>
+  <div class="testimonials">
+    <div class="testimonial-track">
+      <div class="testimonial"><div class="stars">★★★★★</div><p>Johnny my goat fr.</p><strong>— Johnny.</strong></div>
+      <div class="testimonial"><div class="stars">★☆☆☆☆</div><p>This guy sucks!!!.</p><strong>— Johnny.</strong></div>
+      <div class="testimonial"><div class="stars">★★★★☆</div><p>Foids in your area!</p><strong>— Steven</strong></div>
+      <div class="testimonial"><div class="stars">★★★★★</div><p>Yur.</p><strong>— Johnny.</strong></div>
+
+      <!-- Duplicate for seamless loop -->
+      <div class="testimonial"><div class="stars">★★★★★</div><p>Johnny my goat fr.</p><strong>— Johnny.</strong></div>
+      <div class="testimonial"><div class="stars">★☆☆☆☆</div><p>This guy sucks!!!.</p><strong>— Johnny.</strong></div>
+      <div class="testimonial"><div class="stars">★★★★☆</div><p>Foids in your area!</p><strong>— Steven</strong></div>
+      <div class="testimonial"><div class="stars">★★★★★</div><p>Yur.</p><strong>— Johnny.</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Let’s Talk About Your Site</h2>
+  <form action="mailto:Johnnyupshaw05@gmail.com" method="post" enctype="text/plain">
+    <input type="email" name="email" placeholder="Your email" required />
+    <textarea name="message" placeholder="Tell me about what you want to build..." required></textarea>
+    <button type="submit" class="btn">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  <h3>Johnny’s Websites</h3>
+  <p>Clean, fast websites for real businesses.</p>
+</footer>
+
+</body>
+</html>
